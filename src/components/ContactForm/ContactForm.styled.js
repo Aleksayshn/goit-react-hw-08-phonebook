@@ -1,66 +1,52 @@
 import styled from 'styled-components';
 
 export const Form = styled.form`
+  background-color: #68e4c3;
   display: flex;
-  flex-direction: column;
+  gap: 15px;
   align-items: flex-end;
-  gap: 12px;
+  flex-basis: 33%;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  border: 1px dashed #31615a;
   margin-bottom: 20px;
+  border-radius: 4px;
   padding: 20px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
-    1px 4px 6px rgba(0, 0, 0, 0.16);
 `;
 
 export const Label = styled.label`
-  display: flex;
-  align-items: center;
-  color: #1a1a1a;
-  font-size: 24px;
-  font-weight: 600;
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
-  &:hover,
-  :focus {
-    color: #42ffc0;
-  }
+    display: block;
+    margin-bottom: 8px;
 `;
 
 export const Input = styled.input`
-  min-width: 280px;
-  margin-left: 20px;
-  padding: 12px;
-  outline: none;
-  border-radius: 4px;
-  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  border: 2px solid #42ffc0;
-
-  &:hover,
-  :focus {
-    border: 2px solid #1a1a1a;
-  }
+    display: block;
+    height: 25px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #31615a;
+    outline: none;
+    &:focus {
+      border: 1px solid #9a46aa;
+    }
 `;
 
 export const Button = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-shrink: 0;
-  height: 48px;
-  width: 160px;
-  background-color: #42ffc0;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
-    1px 4px 6px rgba(0, 0, 0, 0.16);
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    margin-left: auto;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #31615a;
+    background-color: #31615a;
+    color: #ffffff;
+    cursor: pointer;
+    transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1),
     transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover,
   :focus {
-    background-color: #1a1a1a;
-    transform: scale(1.05);
+    transform: scale(1.02);
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
+    1px 4px 6px rgba(0, 0, 0, 0.16);
   }
 `;
