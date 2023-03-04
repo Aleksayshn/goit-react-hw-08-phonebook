@@ -3,8 +3,6 @@ import { nanoid } from 'nanoid';
 import css from './ContactList.module.css';
 import {
   selectContacts,
-  selectError,
-  selectIsLoading,
 } from 'redux/contacts/contactsSlice';
 import { selectFilter } from 'redux/filter/filterSlice';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,8 +11,6 @@ import { fetchContacts } from 'redux/utils/getContacts';
 
 const ContactList = () => {
   const contacts = useSelector(selectContacts);
-  const loading = useSelector(selectIsLoading);
-  const error = useSelector(selectError);
   const filter = useSelector(selectFilter);
   const dispatch = useDispatch();
 
