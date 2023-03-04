@@ -1,17 +1,25 @@
-import { useDispatch } from 'react-redux';
-import { filterChange } from 'redux/contactsSlice';
-import { Label, Input } from './Filter.styled';
+import { nanoid } from 'nanoid';
+import css from '../ContactForm/ContactForm.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectFilter, setFilter } from 'redux/filter/filterSlice';
 
-export const Filter = () => {
+const Filter = () => {
   const dispatch = useDispatch();
+  const filter = useSelector(selectFilter);
 
   return (
-    <Label>
-      Search by name
-      <Input
+    <div className={css.inputContainer}>
+      <input
         type="text"
-        onChange={e => dispatch(filterChange(e.currentTarget.value))}
+        name="filter"
+        id={nanoid()}
+        value={filter}
+        onChange={e => dispatch(setFilter(e.target.value))}
+        className={css.input}
+        placeholder=" "
       />
-    </Label>
+      <label className={css.label}>Search:</label>
+    </div>
   );
 };
+export default Filter;

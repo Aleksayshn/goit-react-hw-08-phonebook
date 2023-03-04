@@ -1,30 +1,39 @@
-import { useSelector } from 'react-redux';
+import Contact from '../Contact';
+import { nanoid } from 'nanoid';
+import css from './ContactList.module.css';
 import {
   selectContacts,
+  selectError,
   selectIsLoading,
-  selectVisibleContacts,
-} from 'redux/selectors';
-import { ContactListItem, Notification } from 'components';
-import { List } from './ContactList.styled';
+} from 'redux/contacts/contactsSlice';
+import { selectFilter } from 'redux/filter/filterSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchContacts } from 'redux/utils/getContacts';
 
-export const ContactList = () => {
+const ContactList = () => {
   const contacts = useSelector(selectContacts);
-  const isLoading = useSelector(selectIsLoading);
-  const visibleContacts = useSelector(selectVisibleContacts);
+  const loading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
+  const filter = useSelector(selectFilter);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
+
+  const filtered = contacts.filter(el =>
+    el.name.toLowerCase().includes(filter.toLowerCase())
+  );
 
   return (
     <>
-      <List>
-        {visibleContacts?.map(contact => (
-          <ContactListItem key={contact.id} contact={contact} />
+      <ul className={css.list}>
+        {filtered.map(contact => (
+          <Contact contact={contact} key={nanoid()} />
         ))}
-      </List>
-      {!isLoading && contacts?.length === 0 && (
-        <Notification message="There are no contacts yet. Please, add someone!" />
-      )}
-      {!!contacts?.length && !visibleContacts.length && (
-        <Notification message="No contacts found..." />
-      )}
+      </ul>
     </>
   );
 };
+export default ContactList;
